@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - uses: jsmrcaga/action-easy-lambda-deploy@latest
-        name: Update lambda code
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - run: zip lambda.zip main.py
+      - uses: stcalica/update-lambda
         with:
-          function_name: email-me-lambda
-          region: eu-west-1
+          package: lambda.zip
+          function-name: email-me-lambda
+          AWS_REGION: eu-west-1
+          AWS_SECRET_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
