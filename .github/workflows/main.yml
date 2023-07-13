@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: zip lambda.zip file.txt
-      - uses: stcalica/update-lambda
+      - uses: stcalica/update-lambda@0.0.2
         with:
           package: lambda.zip
           function-name: email-me-lambda
