@@ -1,0 +1,22 @@
+name: Update lambda
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update_lambda:
+    name: 'Pull code & update lambda'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: jsmrcaga/action-easy-lambda-deploy@latest
+        name: Update lambda code
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        with:
+          function_name: email-me-lambda
+          region: eu-west-1
