@@ -18,5 +18,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
-          function_name: crypto_bot
-          region: eu-west-3
+          function_name: email-me-lambda
+          region: eu-west-1
